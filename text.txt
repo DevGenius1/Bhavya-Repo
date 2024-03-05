@@ -1,8 +1,3 @@
 
 wbchj text file
 rest-yud
-
-text file
-qwe
-
-test conflict
