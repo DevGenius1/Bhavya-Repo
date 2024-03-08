@@ -26,7 +26,7 @@ jobs:
       - name: Pulle Request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://api.github.com/repos/DevGenius1/Bhavya-Repo/pulls/'
+          url: 'https://api.github.com/repos/DevGenius1/Bhavya-Repo/pulls'
           method: 'POST'
           username: ${{ secrets.NAME }}
           password: ${{ secrets.PASSWORD }}
