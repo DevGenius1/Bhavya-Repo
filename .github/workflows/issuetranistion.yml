@@ -7,26 +7,27 @@ on:
   workflow_dispatch:
  
 jobs:
-  jira-transition:
+  build:
     runs-on: ubuntu-latest
-
+ 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
-
-    - name: Echo hello world
-      run: echo "hello world"
-
-    - name: Transition issue in Jira
-      env:
-        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        JIRA_HOST: https://bhavyass.atlassian.net/
-        JIRA_USERNAME: bhavyashrees@devtools.in
-      run: |
-        ISSUE_KEY="TS-11"
-        TRANSITION_ID="21"
-        curl -s -X POST \
-          -H "Authorization: Basic $(echo -n $JIRA_USERNAME:$JIRA_API_TOKEN | base64)" \
-          -H "Content-Type: application/json" \
-          -d '{ "transition": { "id": "'"$TRANSITION_ID"'" } }' \
-          "https://$JIRA_HOST/rest/api/2/issue/$ISSUE_KEY/transitions"
+      - name: Checkout code
+        uses: actions/checkout@v3
+ 
+      - name: Run a one-line script
+        run: echo Hello, world!
+ 
+      - name: Transition Jira Issue to Done
+        if: github.event_name == 'push' && github.event.before == '0000000000000000000000000000000000000000' && success()
+        env:
+          JIRA_USERNAME: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_ISSUE_KEY: "TS-11"
+          JIRA_TRANSITION_ID: "21"
+        run: |
+          curl -X POST \
+            -H "Accept: application/json" \
+            -u "$JIRA_USERNAME:$JIRA_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{ "transition": { "id": "'"$JIRA_TRANSITION_ID"'" } }' \
+            "https://bhavyass.atlassian.net/rest/api/2/issue/$JIRA_ISSUE_KEY/transitions"
