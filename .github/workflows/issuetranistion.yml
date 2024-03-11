@@ -21,7 +21,7 @@ jobs:
       if: ${{ always() }}
       env:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        JIRA_HOST: https://bhavyass.atlassian.net
+        JIRA_HOST: https://bhavyass.atlassian.net/
         JIRA_USERNAME: bhavyashrees@devtools.in
       run: |
         ISSUE_KEY="TS-11"
