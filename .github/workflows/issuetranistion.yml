@@ -18,14 +18,13 @@ jobs:
       run: echo "hello world"
 
     - name: Transition issue in Jira
-      if: ${{ always() }}
       env:
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_HOST: https://bhavyass.atlassian.net/
         JIRA_USERNAME: bhavyashrees@devtools.in
       run: |
         ISSUE_KEY="TS-11"
-        TRANSITION_ID="31"
+        TRANSITION_ID="21"
         curl -s -X POST \
           -H "Authorization: Basic $(echo -n $JIRA_USERNAME:$JIRA_API_TOKEN | base64)" \
           -H "Content-Type: application/json" \
