@@ -31,5 +31,3 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{ "transition": { "id": "'"$JIRA_TRANSITION_ID"'" } }' \
             "https://bhavyass.atlassian.net/rest/api/2/issue/$JIRA_ISSUE_KEY/transitions"
-           fi
-          fi
