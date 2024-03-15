@@ -4,15 +4,15 @@ on: [push]
 
 jobs:
   job1:
-    runs-on: ubuntu-latest
-    environment: Dev
+    runs-on: github24
+    #environment: Dev
     
     steps:
       - name: Echo hello world
         run: echo "hello world"
       
   job2:
-    runs-on: ubuntu-latest
+    runs-on: github24
     needs: job1
     if: success('job1')
     steps:
