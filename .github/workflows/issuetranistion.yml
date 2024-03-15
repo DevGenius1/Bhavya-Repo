@@ -5,6 +5,8 @@ on: [push]
 jobs:
   job1:
     runs-on: ubuntu-latest
+    environment: Dev
+    
     steps:
       - name: Echo hello world
         run: echo "hello world"
